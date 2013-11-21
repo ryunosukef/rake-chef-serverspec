@@ -9,7 +9,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # install chef
-  config.omnibus.chef_version = "11.4.0"
+  config.omnibus.chef_version = "11.8.0"
 
   # local vagrant server
   config.vm.define :local do |local|
@@ -70,7 +70,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.cookbooks_path = ["./cookbooks", "./site-cookbooks"]
     chef.roles_path = "./roles"
     chef.data_bags_path = "./data_bags"
-    chef.encrypted_data_bag_secret_key_path = '.data_bag_key'
+#    chef.encrypted_data_bag_secret_key_path = '.data_bag_key'
     # chef jsonファイル読み込み
     begin
       fname = ENV["chef_json"]
@@ -100,13 +100,13 @@ end
 # aws setting
 def aws_provider_setting vagrant_aws, setting
   tags              = setting['tags'] || {}
-  ami               = setting['ami'] || 'ami-39b23d38'
-  keypair_name      = setting['keypair_name'] || 'awskeypair'
+  ami               = setting['ami'] || ENV['AWS_AMI'] || 'ami-5769f956'
+  keypair_name      = setting['keypair_name'] || 'aws'
   instance_type     = setting['instance_type'] || 't1.micro'
   region            = setting['region'] || 'ap-northeast-1'
   availability_zone = setting['availability_zone'] || 'ap-northeast-1a'
-  security_groups   = setting['security_groups'] || ['provisioning']
-  private_key_path  = setting['private_key_path'] || '/path/to/keypair_name'
+  security_groups   = setting['security_groups'] || ['default']
+  private_key_path  = setting['private_key_path'] || '~/.ssh/aws.pem'
   ssh_username      = ENV["CHEF_USER"] || setting['ssh_username'] || 'ec2-user'
 
   # aws provider
