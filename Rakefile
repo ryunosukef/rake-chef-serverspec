@@ -22,7 +22,7 @@ namespace :local do
 
   desc "Local: vagrant destroy #{vm}"
   task :destroy do
-    sh "vagrant destroy #{vm}"
+    sh "vagrant destroy -f #{vm}"
   end
 
   desc "Local: iptables無効"
@@ -58,7 +58,7 @@ namespace :aws do
   desc "AWS: vagrant destroy (Terminate instance)"
   task :destroy do
     vm = validate_vm
-    sh "vagrant destroy #{vm}"
+    sh "vagrant destroy -f #{vm}"
   end
 
   desc "AWS: vagrant create-ami"
