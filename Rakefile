@@ -13,20 +13,23 @@ end
 # local
 # desc "Local Vagrant"
 namespace :local do
-  vm = "local"
+  vm = nil
 
   desc "Local: vagrant up #{vm}"
   task :up do
+    vm = validate_vm
     sh "vagrant up #{vm} --no-provision"
   end
 
   desc "Local: vagrant destroy #{vm}"
   task :destroy do
+    vm = validate_vm
     sh "vagrant destroy -f #{vm}"
   end
 
   desc "Local: iptables無効"
   task :disable_iptables do
+    vm = validate_vm
     [
       "./nodes/#{vm}_disable_iptables.json",
     ].each do |j|
@@ -37,12 +40,14 @@ namespace :local do
 
   desc "Local: Chef実行"
   task :provision do
+    vm = validate_vm
     ENV['chef_json'] = build_json_name('local')
     sh "vagrant provision #{vm}"
   end
 
   desc "Local: serverspec実行"
   task :spec do
+    vm = validate_vm
     ENV['chef_json'] = build_json_name('local')
     sh "rspec spec/local/*"
   end
