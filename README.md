@@ -24,6 +24,11 @@ vagrant box をインストールしておく
 -------
 
 ```
+vagrant box add centos https://github.com/2creatives/vagrant-centos/releases/download/v0.1.0/centos64-x86_64-20131030.box
+vagrant box add dummy https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box
+```
+
+```
 $ vagrant box list
 centos (virtualbox)
 dummy  (aws)
