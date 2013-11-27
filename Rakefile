@@ -49,7 +49,7 @@ namespace :local do
   task :spec do
     vm = validate_vm
     ENV['chef_json'] = build_json_name('local')
-    sh "rspec spec/local/*"
+    sh "rspec spec/#{vm}/*"
   end
 end
 
@@ -91,6 +91,13 @@ namespace :aws do
     vm = validate_vm
     ENV['chef_json'] = build_json_name(vm, true)
     sh "vagrant provision #{vm}"
+  end
+
+  desc "AWS: serverspec"
+  task :spec do
+    vm = validate_vm
+    ENV['chef_json'] = build_json_name(vm)
+    sh "rspec spec/#{vm}/*"
   end
 
   desc "AWS: Chef: Packer風マルチタスク[up > init > provision > create-ami > destroy]"

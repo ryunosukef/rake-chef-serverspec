@@ -26,47 +26,33 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # aws dev
-  config.vm.define :aws_srv_dev do |aws_srv_dev|
+  config.vm.define :aws_dev do |aws_dev|
     aws_provider_setting(
-      aws_srv_dev,
+      aws_dev,
       {
         'tags' => {
-          'Name'         => 'vagrant-srv-dev',
+          'Name'         => 'dev',
           'environments' => 'development',
         },
         #'ami' => 'ami-xxxxxxxxxxxxx', # custom-base-ami
+        #'instance_type' => 'c1.xlarge',
+        #'security_groups' => ['base', 'production']
       }
     )
   end
 
-  # production
-  # aws production wap
-  config.vm.define :aws_srv_prd_wap do |aws_srv_prd_wap|
+  # aws stg
+  config.vm.define :aws_stg do |aws_stg|
     aws_provider_setting(
-      aws_srv_prd_wap,
+      aws_stg,
       {
         'tags' => {
-          'Name'         => 'vagrant-srv-prd-wap',
-          'environments' => 'production',
+          'Name'         => 'stg',
+          'environments' => 'staging',
         },
         #'ami' => 'ami-xxxxxxxxxxxxx', # custom-base-ami
-        'instance_type' => 'c1.xlarge',
-        'security_groups' => ['base', 'production-wap']
-      }
-    )
-  end
-  # aws production redis
-  config.vm.define :aws_srv_prd_redis do |aws_srv_prd_redis|
-    aws_provider_setting(
-      aws_srv_prd_redis,
-      {
-        'tags' => {
-          'Name'         => 'vagrant-srv-prd-redis',
-          'environments' => 'production',
-        },
-        #'ami' => 'ami-xxxxxxxxxxxxx', # custom-base-ami
-        'instance_type'   => 'm2.xlarge', # medium
-        'security_groups' => ['base', 'production-redis']
+        #'instance_type' => 'c1.xlarge',
+        #'security_groups' => ['base', 'production']
       }
     )
   end
