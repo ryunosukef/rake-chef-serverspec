@@ -99,7 +99,7 @@ def aws_provider_setting vagrant_aws, setting
   region            = setting['region'] || 'ap-northeast-1'
   availability_zone = setting['availability_zone'] || 'ap-northeast-1a'
   security_groups   = setting['security_groups'] || ['default']
-  private_key_path  = setting['private_key_path'] || '~/.ssh/aws.pem'
+  private_key_path  = setting['private_key_path'] || ENV['AWS_KEY_PATH'] || '.ssh/aws.pem'
   ssh_username      = ENV["CHEF_USER"] || setting['ssh_username'] || 'ec2-user'
 
   # aws provider
