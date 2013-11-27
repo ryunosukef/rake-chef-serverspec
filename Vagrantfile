@@ -9,7 +9,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # install chef
-  config.omnibus.chef_version = "11.8.0"
+  config.omnibus.chef_version = "11.6.0"
 
   # local vagrant server
   config.vm.define :local do |local|
