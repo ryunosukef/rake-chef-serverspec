@@ -11,11 +11,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # install chef
   config.omnibus.chef_version = "11.6.0"
 
-  # local vagrant server
-  config.vm.define :local do |local|
-    local.vm.box = "centos"
-    local.vm.network :forwarded_port, guest: 80, host: 8080
-    local.vm.network :private_network, ip: "192.168.33.10"
+  # local dev 
+  config.vm.define :local_dev do |local_dev|
+    local_dev.vm.box = "centos"
+    local_dev.vm.network :forwarded_port, guest: 80, host: 8080
+    local_dev.vm.network :private_network, ip: "192.168.33.10"
+  end
+
+  # local stg 
+  config.vm.define :local_stg do |local_stg|
+    local_stg.vm.box = "centos"
+    local_stg.vm.network :forwarded_port, guest: 80, host: 28080
+    local_stg.vm.network :private_network, ip: "192.168.33.20"
   end
 
   # aws dev
