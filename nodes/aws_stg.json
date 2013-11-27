@@ -1,0 +1,8 @@
+{
+    "json_name": "aws_dev",
+    "recipes":[
+        "recipe[echo]",
+        "recipe[ntp]"
+    ]
+}
+
