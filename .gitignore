@@ -1,4 +1,3 @@
-.vagrant
 Berksfile.lock
 *~
 *#
@@ -13,4 +12,5 @@ Gemfile.lock
 bin/*
 .bundle/*
 
+.vagrant/
 vagrant-ssh.conf
