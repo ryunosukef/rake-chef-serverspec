@@ -41,14 +41,14 @@ namespace :local do
   desc "Local: Chef実行"
   task :provision do
     vm = validate_vm
-    ENV['chef_json'] = build_json_name('local')
+    ENV['chef_json'] = build_json_name(vm)
     sh "vagrant provision #{vm}"
   end
 
   desc "Local: serverspec実行"
   task :spec do
     vm = validate_vm
-    ENV['chef_json'] = build_json_name('local')
+    ENV['chef_json'] = build_json_name(vm)
     sh "rspec spec/#{vm}/*"
   end
 end
