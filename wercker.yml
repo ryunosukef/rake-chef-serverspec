@@ -25,6 +25,20 @@ build:
                 vagrant plugin install vagrant-omnibus 
 
         - script:
+            name: make .ssh directory
+            code: mkdir -p ".ssh"
+        - create-file:
+            name: write ssh key
+            filename: .ssh/aws.pem
+            overwrite: true
+            hide-from-log: true
+            content: $AWS_WERCKER_KEY_PRIVATE
+        - script:
+            name: set permissions for ssh key
+            code: chmod 0400 .ssh/aws.pem
+        - cap
+
+        - script:
             name: rake aws:up
             code: |
                 rake aws:up vm=aws_dev --trace
