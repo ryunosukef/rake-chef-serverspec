@@ -36,7 +36,6 @@ build:
         - script:
             name: set permissions for ssh key
             code: chmod 0400 .ssh/aws.pem
-        - cap
 
         - script:
             name: rake aws:up
