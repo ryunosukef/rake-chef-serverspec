@@ -10,3 +10,7 @@ build:
                 echo "from location $(which ruby)"
                 echo -p "gem list: $(gem list)"
 
+        - script:
+            name: vagrant -v
+            code: vagrant -v 
+
