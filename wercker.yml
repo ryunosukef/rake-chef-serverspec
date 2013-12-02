@@ -38,7 +38,8 @@ build:
             code: chmod 0400 $HOME/.ssh/aws.pem
 
         - script:
-            name: rake aws:up
+            name: bundle exec rake aws:up
             code: |
-                rake aws:up vm=aws_dev --trace
+                ls -la $HOME
+                bundle exec rake aws:up vm=aws_dev --trace
 
