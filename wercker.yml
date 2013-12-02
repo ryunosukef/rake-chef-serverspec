@@ -17,3 +17,8 @@ build:
                 sudo dpkg --install vagrant_1.3.5_x86_64.deb
                 vagrant -v
 
+        - script:
+            name: rake aws:up
+            code: |
+                rake aws:up vm=aws_dev
+
