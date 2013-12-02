@@ -18,7 +18,14 @@ build:
                 vagrant -v
 
         - script:
+            name: setup vagrant plugin
+            code: |
+                vagrant plugin install vagrant-aws
+                vagrant plugin install vagrant-ami
+                vagrant plugin install vagrant-omnibus 
+
+        - script:
             name: rake aws:up
             code: |
-                rake aws:up vm=aws_dev
+                rake aws:up vm=aws_dev --trace
 
