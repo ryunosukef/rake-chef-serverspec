@@ -19,6 +19,7 @@ namespace :local do
   task :up do
     vm = validate_vm
     sh "vagrant up #{vm} --no-provision"
+    sh "vagrant ssh-config #{vm} > vagrant-ssh.conf"
   end
 
   desc "Local: vagrant destroy #{vm}"
@@ -64,6 +65,7 @@ namespace :aws do
     vm = validate_vm
     ENV['chef_json'] = build_json_name(vm)
     sh "vagrant up #{vm} --provider=aws --no-provision"
+    sh "vagrant ssh-config #{vm} > vagrant-ssh.conf"
   end
 
   desc "AWS: vagrant destroy (Terminate instance)"
