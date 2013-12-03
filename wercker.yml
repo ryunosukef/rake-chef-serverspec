@@ -29,13 +29,19 @@ build:
             code: mkdir -p "$HOME/.ssh"
         - create-file:
             name: write ssh key
-            filename: $HOME/.ssh/wercker.pem
+            filename: $AWS_KEY_PATH
             overwrite: true
             hide-from-log: true
             content: $AWS_WERCKER_KEY_PRIVATE
         - script:
             name: set permissions for ssh key
-            code: chmod 0400 $HOME/.ssh/wercker.pem
+            code: chmod 0400 $AWS_KEY_PATH
+
+        - script:
+            name: ssh config
+            code: |
+                ls -la $HOME/.ssh/
+                echo "StrictHostKeyChecking  no" >> $HOME/.ssh/config
 
         - script:
             name: bundle exec rake aws:up
