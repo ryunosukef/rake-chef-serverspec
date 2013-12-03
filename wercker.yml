@@ -61,4 +61,4 @@ build:
         - hipchat-notify:
             token: $HIPCHAT_TOKEN
             room-id: 360009
-            from-name: github
+            from-name: wercker
