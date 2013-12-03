@@ -94,7 +94,7 @@ end
 def aws_provider_setting vagrant_aws, setting
   tags              = setting['tags'] || {}
   ami               = setting['ami'] || ENV['AWS_AMI'] || 'ami-5769f956'
-  keypair_name      = setting['keypair_name'] || 'aws'
+  keypair_name      = setting['keypair_name'] || ENV['AWS_KEYPAIR_NAME'] || 'aws'
   instance_type     = setting['instance_type'] || 't1.micro'
   region            = setting['region'] || 'ap-northeast-1'
   availability_zone = setting['availability_zone'] || 'ap-northeast-1a'
