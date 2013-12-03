@@ -29,17 +29,19 @@ build:
             code: mkdir -p "$HOME/.ssh"
         - create-file:
             name: write ssh key
-            filename: $HOME/.ssh/aws.pem
+            filename: $HOME/.ssh/wercker.pem
             overwrite: true
             hide-from-log: true
             content: $AWS_WERCKER_KEY_PRIVATE
         - script:
             name: set permissions for ssh key
-            code: chmod 0400 $HOME/.ssh/aws.pem
+            code: chmod 0400 $HOME/.ssh/wercker.pem
 
         - script:
             name: bundle exec rake aws:up
             code: |
-                ls -la $HOME
+                ls -la $HOME/.ssh/
+                echo $AWS_KEYPAIR_NAME
+                echo $AWS_KEY_PATH
                 bundle exec rake aws:up vm=aws_dev --trace
 
