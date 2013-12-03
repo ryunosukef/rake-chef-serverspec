@@ -38,15 +38,12 @@ build:
             code: chmod 0400 $AWS_KEY_PATH
 
         - script:
-            name: ssh config
-            code: |
-                ls -la $HOME/.ssh/
-                echo "StrictHostKeyChecking  no" >> $HOME/.ssh/config
-                cat $HOME/.ssh/config
-        - script:
             name: bundle exec rake aws:up
             code: |
-                rake --version
-                bundle exec rake --version
                 bundle exec rake aws:up vm=aws_dev --trace
+
+        - script:
+            name: bundle exec rake aws:destroy
+            code: |
+                bundle exec rake aws:destroy vm=aws_dev --trace
 
