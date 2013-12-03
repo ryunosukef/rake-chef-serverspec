@@ -43,7 +43,7 @@ build:
                 ls -la $HOME/.ssh/
                 echo "StrictHostKeyChecking  no" >> $HOME/.ssh/config
                 cat $HOME/.ssh/config
-                rm -rf $HOME/.ssh/known_hosts
+
         - script:
             name: bundle exec rake aws:up
             code: |
