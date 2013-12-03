@@ -1,6 +1,13 @@
 box: wercker/ruby
 build:
     steps:
+        - script:
+            name: setup vagrant
+            code: |
+                wget http://files.vagrantup.com/packages/a40522f5fabccb9ddabad03d836e120ff5d14093/vagrant_1.3.5_x86_64.deb
+                sudo dpkg --install vagrant_1.3.5_x86_64.deb
+                vagrant -v
+
         - bundle-install
 
         - script:
@@ -9,13 +16,6 @@ build:
                 echo "ruby version $(ruby --version) running"
                 echo "from location $(which ruby)"
                 echo -p "gem list: $(gem list)"
-
-        - script:
-            name: setup vagrant
-            code: |
-                wget http://files.vagrantup.com/packages/a40522f5fabccb9ddabad03d836e120ff5d14093/vagrant_1.3.5_x86_64.deb
-                sudo dpkg --install vagrant_1.3.5_x86_64.deb
-                vagrant -v
 
         - script:
             name: setup vagrant plugin
@@ -42,12 +42,10 @@ build:
             code: |
                 ls -la $HOME/.ssh/
                 echo "StrictHostKeyChecking  no" >> $HOME/.ssh/config
-
+                cat $HOME/.ssh/config
+                rm -rf $HOME/.ssh/known_hosts
         - script:
             name: bundle exec rake aws:up
             code: |
-                ls -la $HOME/.ssh/
-                echo $AWS_KEYPAIR_NAME
-                echo $AWS_KEY_PATH
                 bundle exec rake aws:up vm=aws_dev --trace
 
