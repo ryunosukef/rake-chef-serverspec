@@ -57,3 +57,8 @@ build:
             code: |
                 bundle exec rake aws:destroy vm=aws_dev --trace
 
+    after-steps:
+        - hipchat-notify:
+            token: $HIPCHAT_TOKEN
+            room-id: 360009
+            from-name: github
