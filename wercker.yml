@@ -43,9 +43,10 @@ build:
                 ls -la $HOME/.ssh/
                 echo "StrictHostKeyChecking  no" >> $HOME/.ssh/config
                 cat $HOME/.ssh/config
-
         - script:
             name: bundle exec rake aws:up
             code: |
+                rake --version
+                bundle exec rake --version
                 bundle exec rake aws:up vm=aws_dev --trace
 
