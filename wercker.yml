@@ -43,6 +43,16 @@ build:
                 bundle exec rake aws:up vm=aws_dev --trace
 
         - script:
+            name: bundle exec rake aws:provision
+            code: |
+                bundle exec rake aws:provision vm=aws_dev --trace
+
+        - script:
+            name: bundle exec rake aws:spec
+            code: |
+                bundle exec rake aws:spec vm=aws_dev --trace
+
+        - script:
             name: bundle exec rake aws:destroy
             code: |
                 bundle exec rake aws:destroy vm=aws_dev --trace
