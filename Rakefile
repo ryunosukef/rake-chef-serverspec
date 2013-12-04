@@ -43,6 +43,7 @@ namespace :local do
   task :provision do
     vm = validate_vm
     ENV['chef_json'] = build_json_name(vm)
+    sh "berks instal --path=cookbooks/"
     sh "vagrant provision #{vm}"
   end
 
@@ -85,6 +86,7 @@ namespace :aws do
   task :provision do
     vm = validate_vm
     ENV['chef_json'] = build_json_name(vm)
+    sh "berks instal --path=cookbooks/"
     sh "vagrant provision #{vm}"
   end
 
@@ -92,6 +94,7 @@ namespace :aws do
   task :provision_deploy do
     vm = validate_vm
     ENV['chef_json'] = build_json_name(vm, true)
+    sh "berks instal --path=cookbooks/"
     sh "vagrant provision #{vm}"
   end
 
