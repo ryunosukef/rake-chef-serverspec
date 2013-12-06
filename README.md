@@ -10,8 +10,8 @@ rake-chef-serverspec
 
 rake 構文
 ---------
-<env>によってlocal環境とaws環境を使い分け、
-<vm_name>によって、適用するrecipe/serverspecを使い分ける
+[env]によってlocal環境とaws環境を使い分け、
+[vm_name]によって、適用するrecipe/serverspecを使い分ける
 
 ```
 rake <env>:<operation> vm=<vm_name>
