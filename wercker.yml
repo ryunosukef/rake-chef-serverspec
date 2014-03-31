@@ -23,6 +23,7 @@ build:
                 vagrant plugin install vagrant-aws
                 vagrant plugin install vagrant-ami
                 vagrant plugin install vagrant-omnibus 
+                vagrant plugin install unf 
 
         - script:
             name: make .ssh directory
