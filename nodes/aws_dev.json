@@ -3,7 +3,8 @@
     "recipes":[
         "recipe[echo]",
         "recipe[ntp]",
-        "recipe[tomcat]"
+        "recipe[tomcat]",
+        "recipe[git]"
     ]
 }
 
